@@ -16,7 +16,7 @@ WORKDIR /app
 
 # Copy composer files first (layer caching)
 COPY composer.json composer.lock ./
-COPY innopacks ./innopacks  # <-- ADD THIS if innopacks is in your repo
+COPY innopacks ./innopacks
 
 # Allow composer plugins as root + install
 ENV COMPOSER_ALLOW_SUPERUSER=1
@@ -26,6 +26,14 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 COPY package.json package-lock.json* ./
 RUN npm install
 COPY . .
+
+# NUCLEAR OPTION: Remove installer routes to prevent redirect
+RUN sed -i '/install/d' routes/web.php 2>/dev/null || true \
+    && sed -i '/install/d' routes/*.php 2>/dev/null || true \
+    && rm -rf innopacks/install 2>/dev/null || true \
+    && rm -rf vendor/innopacks/install 2>/dev/null || true
+
+# Build frontend
 RUN npm run build
 
 # Create storage directories + install flag

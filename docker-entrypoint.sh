@@ -3,30 +3,38 @@ set -e
 
 cd /app
 
-# 1. Ensure storage directories exist
+# Ensure storage dirs
 mkdir -p storage/app/public storage/framework/cache storage/framework/sessions storage/framework/views storage/logs
 chmod -R 775 storage bootstrap/cache
 
-# 2. Create install flag (SKIPS THE WIZARD)
+# CRITICAL: Create install flag (prevents wizard)
 touch storage/installed
 
-# 3. Ensure SQLite DB exists
+# Ensure SQLite DB exists (on persistent volume ideally)
 if [ ! -f database/database.sqlite ]; then
     touch database/database.sqlite
     chmod 664 database/database.sqlite
+    NEW_DB=true
+else
+    NEW_DB=false
 fi
 
-# 4. Run migrations (safe — only new ones, never drops data)
+# Run migrations (safe — only new ones)
 php artisan migrate --force
 
-# 5. Re-create install flag (ensure it persists)
+# Seed admin ONLY on first run
+if [ "$NEW_DB" = "true" ]; then
+    php artisan db:seed --class=AdminSeeder --force 2>/dev/null || true
+fi
+
+# Re-create install flag (ensure it persists)
 touch storage/installed
 
-# 6. Cache configs for performance
+# Cache configs
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
 
-# 7. Start server
+# Start server
 echo "Starting InnoShop on port 8080..."
 exec php -S 0.0.0.0:8080 -t public
