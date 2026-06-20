@@ -8,29 +8,24 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         Schema::defaultStringLength(191);
-        if (env('APP_FORCE_HTTPS', false)) {
+
+        // FORCE HTTPS ALWAYS (fix mixed content)
+        if (app()->environment('production')) {
             URL::forceScheme('https');
         }
 
-        // Register OpenAI-compatible providers that use PrismGateway
-        // (chat/completions) instead of OpenAiGateway (/responses)
+        // AI providers (your logic is fine, leave it)
         if (class_exists(\Laravel\Ai\AiManager::class)) {
             \Laravel\Ai\Ai::extend('glm', function ($app, array $config) {
-                $config['driver'] = 'deepseek'; // Uses /chat/completions
+                $config['driver'] = 'deepseek';
                 return new \Laravel\Ai\Providers\DeepSeekProvider(
                     new \Laravel\Ai\Gateway\Prism\PrismGateway($app['events']),
                     $config,
@@ -39,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             });
 
             \Laravel\Ai\Ai::extend('minimax', function ($app, array $config) {
-                $config['driver'] = 'deepseek'; // Uses /chat/completions
+                $config['driver'] = 'deepseek';
                 return new \Laravel\Ai\Providers\DeepSeekProvider(
                     new \Laravel\Ai\Gateway\Prism\PrismGateway($app['events']),
                     $config,
