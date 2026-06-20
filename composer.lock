@@ -6233,9 +6233,14 @@
         {
             "name": "srmklive/paypal",
             "version": "3.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blendbyte/laravel-paypal.git",
+                "reference": "522834a22fbd10e8fa1be21cb7c84d3d45c3a763"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://mirrors.tencent.com/repository/composer/srmklive/paypal/3.1.1/srmklive-paypal-3.1.1.zip",
+                "url": "https://api.github.com/repos/blendbyte/laravel-paypal/zipball/522834a22fbd10e8fa1be21cb7c84d3d45c3a763",
                 "reference": "522834a22fbd10e8fa1be21cb7c84d3d45c3a763",
                 "shasum": ""
             },
@@ -6272,6 +6277,7 @@
                     "Srmklive\\PayPal\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -6291,9 +6297,14 @@
         {
             "name": "stripe/stripe-php",
             "version": "v15.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "3df1a19a33477af9ead8984dbd84e8f637c36199"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://mirrors.tencent.com/repository/composer/stripe/stripe-php/v15.10.0/stripe-stripe-php-v15.10.0.zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/3df1a19a33477af9ead8984dbd84e8f637c36199",
                 "reference": "3df1a19a33477af9ead8984dbd84e8f637c36199",
                 "shasum": ""
             },
@@ -6319,6 +6330,7 @@
                     "Stripe\\": "lib/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],

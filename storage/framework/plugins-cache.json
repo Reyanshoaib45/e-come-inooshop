@@ -1,0 +1,96 @@
+{
+    "mtime": 1781945599,
+    "data": {
+        "BankTransfer": {
+            "code": "BankTransfer",
+            "name": {
+                "zh-cn": "\u94f6\u884c\u8f6c\u8d26",
+                "en": "Bank Transfer"
+            },
+            "description": {
+                "zh-cn": "\u94f6\u884c\u8f6c\u8d26\u662f\u4e00\u79cd\u5b89\u5168\u53ef\u9760\u7684\u652f\u4ed8\u65b9\u5f0f\uff0c\u5ba2\u6237\u901a\u8fc7\u94f6\u884c\u8d26\u6237\u76f4\u63a5\u8f6c\u8d26\u5230\u5546\u6237\u8d26\u6237\u3002\u9002\u7528\u4e8e\u5927\u989d\u4ea4\u6613\u548c\u9700\u8981\u94f6\u884c\u51ed\u8bc1\u7684\u573a\u666f\uff0c\u652f\u6301\u591a\u79cd\u8d27\u5e01\u548c\u94f6\u884c\u7cfb\u7edf\u3002",
+                "en": "Bank Transfer is a secure and reliable payment method where customers transfer funds directly from their bank account to the merchant's account. Ideal for large transactions and scenarios requiring bank documentation, supporting multiple currencies and banking systems."
+            },
+            "type": "payment",
+            "version": "v1.0.0",
+            "icon": "\/images\/logo.png",
+            "author": {
+                "name": "InnoShop",
+                "email": "edward@innoshop.com"
+            }
+        },
+        "FixedShipping": {
+            "code": "FixedShipping",
+            "name": {
+                "zh-cn": "\u56fa\u5b9a\u8fd0\u8d39",
+                "en": "Fixed Shipping"
+            },
+            "description": {
+                "zh-cn": "\u56fa\u5b9a\u8fd0\u8d39",
+                "en": "Fixed Shipping"
+            },
+            "type": "shipping",
+            "version": "v1.0.0",
+            "icon": "\/images\/logo.png",
+            "author": {
+                "name": "InnoShop",
+                "email": "edward@innoshop.com"
+            }
+        },
+        "PageBuilder": {
+            "code": "PageBuilder",
+            "name": {
+                "zh-cn": "\u9875\u9762\u6784\u5efa\u5668",
+                "en": "Page Builder"
+            },
+            "description": {
+                "zh-cn": "\u5f3a\u5927\u7684\u53ef\u89c6\u5316\u9875\u9762\u6784\u5efa\u5de5\u5177\uff0c\u8f7b\u677e\u521b\u5efa\u81ea\u5b9a\u4e49\u9875\u9762",
+                "en": "Powerful visual page building tool for easily creating custom pages"
+            },
+            "type": "marketing",
+            "version": "v1.0.0",
+            "panel_route": "pbuilder.index",
+            "icon": "\/images\/logo.png",
+            "author": {
+                "name": "InnoShop",
+                "email": "edward@innoshop.com"
+            }
+        },
+        "PayPal": {
+            "code": "PayPal",
+            "name": {
+                "zh-cn": "PayPal",
+                "en": "PayPal"
+            },
+            "description": {
+                "zh-cn": "PayPal \u662f\u5168\u7403\u6700\u5927\u7684\u5728\u7ebf\u652f\u4ed8\u5e73\u53f0\u4e4b\u4e00\uff0c\u652f\u6301 PayPal \u8d26\u6237\u3001\u4fe1\u7528\u5361\u3001\u501f\u8bb0\u5361\u7b49\u591a\u79cd\u652f\u4ed8\u65b9\u5f0f\uff0c\u8986\u76d6\u5168\u7403 200+ \u4e2a\u56fd\u5bb6\u548c\u5730\u533a\uff0c\u4e3a\u8d85\u8fc7 4 \u4ebf\u7528\u6237\u63d0\u4f9b\u5b89\u5168\u4fbf\u6377\u7684\u652f\u4ed8\u670d\u52a1\u3002",
+                "en": "PayPal is one of the world's largest online payment platforms, supporting PayPal accounts, credit cards, debit cards, and more. Available in 200+ countries and regions, serving over 400 million users with secure and convenient payment services."
+            },
+            "type": "payment",
+            "version": "v2.0.0",
+            "icon": "\/images\/logo2.png",
+            "author": {
+                "name": "InnoShop",
+                "email": "team@innoshop.com"
+            }
+        },
+        "Stripe": {
+            "code": "Stripe",
+            "name": {
+                "zh-cn": "Stripe \u652f\u4ed8",
+                "en": "Stripe"
+            },
+            "description": {
+                "zh-cn": "Stripe \u662f\u4e00\u4e2a\u5168\u7403\u9886\u5148\u7684\u5728\u7ebf\u652f\u4ed8\u5904\u7406\u5e73\u53f0\uff0c\u652f\u6301\u591a\u79cd\u8d27\u5e01\u548c\u652f\u4ed8\u65b9\u5f0f\u3002\u5b83\u63d0\u4f9b\u4e86\u5f3a\u5927\u7684API\u548c\u5de5\u5177\uff0c\u5e2e\u52a9\u5546\u5bb6\u8f7b\u677e\u96c6\u6210\u652f\u4ed8\u529f\u80fd\u3002",
+                "en": "Stripe is a leading global online payment processing platform that supports multiple currencies and payment methods. It provides powerful APIs and tools to help merchants easily integrate payment functionalities."
+            },
+            "type": "payment",
+            "version": "v1.2.0",
+            "icon": "\/image\/logo.png",
+            "author": {
+                "name": "InnoShop",
+                "email": "team@innoshop.com"
+            }
+        }
+    }
+}
