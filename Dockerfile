@@ -24,14 +24,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction
 # Build frontend
 RUN npm install && npm run build
 
-# Remove installer routes AND regenerate autoloader
-RUN sed -i '/install/d' routes/web.php 2>/dev/null || true \
-    && sed -i '/install/d' routes/*.php 2>/dev/null || true \
-    && rm -rf innopacks/install 2>/dev/null || true \
-    && rm -rf vendor/innopacks/install 2>/dev/null || true \
-    && composer dump-autoload --optimize --no-interaction
-
-# Create storage + install flag
+# Create storage + install flag (THIS IS ALL YOU NEED)
 RUN mkdir -p storage/app/public storage/framework/cache storage/framework/sessions storage/framework/views storage/logs \
     && touch storage/installed \
     && touch database/database.sqlite \
