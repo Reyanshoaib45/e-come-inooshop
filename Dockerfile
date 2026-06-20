@@ -14,36 +14,32 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Copy composer files + artisan FIRST (needed for composer scripts)
-COPY composer.json composer.lock artisan ./
-COPY innopacks ./innopacks
-
-# Allow composer plugins as root + install
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy package files and install/build frontend
-COPY package.json package-lock.json* ./
-RUN npm install
+# Copy EVERYTHING first (no more layer caching for composer, but it works)
 COPY . .
 
-# NUCLEAR OPTION: Remove installer routes to prevent redirect
-RUN sed -i '/install/d' routes/web.php 2>/dev/null || true \
-    && sed -i '/install/d' routes/*.php 2>/dev/null || true \
-    && rm -rf innopacks/install 2>/dev/null || true \
-    && rm -rf vendor/innopacks/install 2>/dev/null || true
+# Install composer WITHOUT running scripts (nuclear fix)
+ENV COMPOSER_ALLOW_SUPERUSER=1
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
+# Now run scripts manually after everything is in place
+RUN composer run-script post-autoload-dump
 
 # Build frontend
-RUN npm run build
+RUN npm install && npm run build
 
-# Create storage directories + install flag
+# Remove installer routes
+RUN sed -i '/install/d' routes/web.php 2>/dev/null || true \
+    && sed -i '/install/d' routes/*.php 2>/dev/null || true \
+    && rm -rf innopacks/install 2>/dev/null || true
+
+# Create storage + install flag
 RUN mkdir -p storage/app/public storage/framework/cache storage/framework/sessions storage/framework/views storage/logs \
     && touch storage/installed \
     && touch database/database.sqlite \
     && chmod -R 775 storage bootstrap/cache database \
     && chmod 664 database/database.sqlite
 
-# Cache configs at build
+# Cache configs
 RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
