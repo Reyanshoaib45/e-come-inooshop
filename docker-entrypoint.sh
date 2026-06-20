@@ -10,15 +10,13 @@ chmod -R 775 storage bootstrap/cache
 # 2. Create install flag (SKIPS THE WIZARD)
 touch storage/installed
 
-# 3. Ensure SQLite DB exists (if using SQLite)
-if [ "$DB_CONNECTION" = "sqlite" ] || [ -z "$DB_CONNECTION" ]; then
-    if [ ! -f database/database.sqlite ]; then
-        touch database/database.sqlite
-        chmod 664 database/database.sqlite
-    fi
+# 3. Ensure SQLite DB exists
+if [ ! -f database/database.sqlite ]; then
+    touch database/database.sqlite
+    chmod 664 database/database.sqlite
 fi
 
-# 4. Run migrations (safe — only applies new ones, never drops data)
+# 4. Run migrations (safe — only new ones, never drops data)
 php artisan migrate --force
 
 # 5. Re-create install flag (ensure it persists)

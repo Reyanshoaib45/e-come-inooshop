@@ -16,6 +16,10 @@ WORKDIR /app
 
 # Copy composer files first (layer caching)
 COPY composer.json composer.lock ./
+COPY innopacks ./innopacks  # <-- ADD THIS if innopacks is in your repo
+
+# Allow composer plugins as root + install
+ENV COMPOSER_ALLOW_SUPERUSER=1
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Copy package files and install/build frontend
