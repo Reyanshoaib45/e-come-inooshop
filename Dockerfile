@@ -14,8 +14,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-# Copy composer files first (layer caching)
-COPY composer.json composer.lock ./
+# Copy composer files + artisan FIRST (needed for composer scripts)
+COPY composer.json composer.lock artisan ./
 COPY innopacks ./innopacks
 
 # Allow composer plugins as root + install
